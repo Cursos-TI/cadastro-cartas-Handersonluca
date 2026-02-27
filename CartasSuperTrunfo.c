@@ -15,13 +15,18 @@ int main(){
     int pontos1;         // quantidade de pontos turisticos
 
     // CARTA 2
-    char estado2;
-    char codigo2[10];
-    char cidade2[50];
-    int populacao2;
-    float area2;
-    float pib2;
-    int pontos2;
+    char estado2;        // letra que representa o estado
+    char codigo2[10];    // codigo da carta (ex: B01)
+    char cidade2[50];    // nome da cidade
+    int populacao2;      // numero de habitantes
+    float area2;         // area da cidade
+    float pib2;          // PIB da cidade
+    int pontos2;         // quantidade de pontos turisticos
+
+    // ============================
+    // NIVEL NOVATO
+    // Cadastro e exibicao das cartas
+    // ============================
 
     printf("=== Cadastro Carta 1 ===\n");
 
@@ -29,10 +34,10 @@ int main(){
     scanf(" %c", &estado1);   // scanf le o valor digitado e guarda na variavel
 
     printf("Codigo: ");
-    scanf("%s", codigo1);
+    scanf("%s", codigo1);     // le texto (sem espaco) e guarda no codigo
 
     printf("Cidade: ");
-    scanf("%s", cidade1);
+    scanf("%s", cidade1);     // le texto (sem espaco) e guarda na cidade
 
     printf("Populacao: ");
     scanf("%d", &populacao1); // & indica o endereco da variavel para ser alterada
@@ -50,7 +55,7 @@ int main(){
     printf("\n=== Cadastro Carta 2 ===\n");
 
     printf("Estado (letra): ");
-    scanf(" %c", &estado2);
+    scanf(" %c", &estado2);   // o espaco antes do %c evita pegar ENTER
 
     printf("Codigo: ");
     scanf("%s", codigo2);
@@ -71,9 +76,9 @@ int main(){
     scanf("%d", &pontos2);
 
 
-    printf("\n=== CARTAS CADASTRADAS ===\n");
+    printf("\n=== CARTAS CADASTRADAS (NOVATO) ===\n");
 
-    // printf mostra os dados na tela
+    // printf serve para mostrar mensagens e valores na tela
     printf("\nCarta 1\n");
     printf("Estado: %c\n", estado1);
     printf("Codigo: %s\n", codigo1);
@@ -95,7 +100,7 @@ int main(){
 
     // ============================
     // NIVEL AVENTUREIRO
-    // Novas propriedades calculadas:
+    // Calculos:
     // - Densidade Populacional = Populacao / Area
     // - PIB per Capita = PIB / Populacao
     // ============================
@@ -103,7 +108,7 @@ int main(){
     float densidade1, densidade2;
     float pibPerCapita1, pibPerCapita2;
 
-    // Evita divisao por zero
+    // Protecao pra nao dar divisao por zero (evita bug)
     if(area1 != 0)
         densidade1 = (float)populacao1 / area1;
     else
@@ -124,7 +129,7 @@ int main(){
     else
         pibPerCapita2 = 0;
 
-    printf("\n=== DADOS CALCULADOS (NIVEL AVENTUREIRO) ===\n");
+    printf("\n=== DADOS CALCULADOS (AVENTUREIRO) ===\n");
 
     printf("\nCarta 1\n");
     printf("Densidade Populacional: %.2f\n", densidade1);
@@ -133,6 +138,59 @@ int main(){
     printf("\nCarta 2\n");
     printf("Densidade Populacional: %.2f\n", densidade2);
     printf("PIB per Capita: %.6f\n", pibPerCapita2);
+
+
+    // ============================
+    // NIVEL MESTRE
+    // Comparacoes:
+    // - Densidade: menor vence
+    // - Outras propriedades: maior vence
+    // - Super Poder: soma de todas as propriedades
+    // ============================
+
+    float super1, super2;
+
+    // Super Poder = soma das propriedades (inseridas + calculadas)
+    super1 = populacao1 + area1 + pib1 + pontos1 + densidade1 + pibPerCapita1;
+    super2 = populacao2 + area2 + pib2 + pontos2 + densidade2 + pibPerCapita2;
+
+    printf("\n=== RESULTADOS DAS COMPARACOES (MESTRE) ===\n");
+
+    printf("\n[Populacao] ");
+    if(populacao1 > populacao2) printf("Vencedor: Carta 1\n");
+    else if(populacao2 > populacao1) printf("Vencedor: Carta 2\n");
+    else printf("Empate\n");
+
+    printf("[Area] ");
+    if(area1 > area2) printf("Vencedor: Carta 1\n");
+    else if(area2 > area1) printf("Vencedor: Carta 2\n");
+    else printf("Empate\n");
+
+    printf("[PIB] ");
+    if(pib1 > pib2) printf("Vencedor: Carta 1\n");
+    else if(pib2 > pib1) printf("Vencedor: Carta 2\n");
+    else printf("Empate\n");
+
+    printf("[Pontos Turisticos] ");
+    if(pontos1 > pontos2) printf("Vencedor: Carta 1\n");
+    else if(pontos2 > pontos1) printf("Vencedor: Carta 2\n");
+    else printf("Empate\n");
+
+    printf("[Densidade Populacional] (menor vence) ");
+    if(densidade1 < densidade2) printf("Vencedor: Carta 1\n");
+    else if(densidade2 < densidade1) printf("Vencedor: Carta 2\n");
+    else printf("Empate\n");
+
+    printf("[PIB per Capita] ");
+    if(pibPerCapita1 > pibPerCapita2) printf("Vencedor: Carta 1\n");
+    else if(pibPerCapita2 > pibPerCapita1) printf("Vencedor: Carta 2\n");
+    else printf("Empate\n");
+
+    printf("[Super Poder] ");
+    printf("Carta 1 = %.2f | Carta 2 = %.2f -> ", super1, super2);
+    if(super1 > super2) printf("Vencedor: Carta 1\n");
+    else if(super2 > super1) printf("Vencedor: Carta 2\n");
+    else printf("Empate\n");
 
     return 0;
 }
