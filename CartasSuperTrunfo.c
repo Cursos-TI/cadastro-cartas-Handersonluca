@@ -92,5 +92,47 @@ int main(){
     printf("PIB: %.2f\n", pib2);
     printf("Pontos turisticos: %d\n", pontos2);
 
+
+    // ============================
+    // NIVEL AVENTUREIRO
+    // Novas propriedades calculadas:
+    // - Densidade Populacional = Populacao / Area
+    // - PIB per Capita = PIB / Populacao
+    // ============================
+
+    float densidade1, densidade2;
+    float pibPerCapita1, pibPerCapita2;
+
+    // Evita divisao por zero
+    if(area1 != 0)
+        densidade1 = (float)populacao1 / area1;
+    else
+        densidade1 = 0;
+
+    if(populacao1 != 0)
+        pibPerCapita1 = pib1 / populacao1;
+    else
+        pibPerCapita1 = 0;
+
+    if(area2 != 0)
+        densidade2 = (float)populacao2 / area2;
+    else
+        densidade2 = 0;
+
+    if(populacao2 != 0)
+        pibPerCapita2 = pib2 / populacao2;
+    else
+        pibPerCapita2 = 0;
+
+    printf("\n=== DADOS CALCULADOS (NIVEL AVENTUREIRO) ===\n");
+
+    printf("\nCarta 1\n");
+    printf("Densidade Populacional: %.2f\n", densidade1);
+    printf("PIB per Capita: %.6f\n", pibPerCapita1);
+
+    printf("\nCarta 2\n");
+    printf("Densidade Populacional: %.2f\n", densidade2);
+    printf("PIB per Capita: %.6f\n", pibPerCapita2);
+
     return 0;
 }
